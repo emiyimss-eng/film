@@ -1,18 +1,16 @@
-using Microsoft.EntityFrameworkCore; // BU SATIRI EKLEDİK
-using FilmProjem.Data;              // BU SATIRI EKLEDİK (Data klasöründeki context için)
+using Microsoft.EntityFrameworkCore;
+using FilmProjem.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1. ADIM: Veritabanı Servisini Buraya Ekliyoruz
+// 1. ADIM: Veritabanı Servisi
 builder.Services.AddDbContext<UygulamaDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -20,15 +18,15 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseRouting();
+// 2. ADIM: Statik dosyalar için bu satır yeterlidir
+app.UseStaticFiles(); 
 
+app.UseRouting();
 app.UseAuthorization();
 
-app.MapStaticAssets();
-
+// 3. ADIM: Hatalı olan .MapStaticAssets() ve .WithStaticAssets() kısımlarını sildik
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
-    .WithStaticAssets();
-app.UseStaticFiles();
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
 app.Run();

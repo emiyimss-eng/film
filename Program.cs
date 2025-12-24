@@ -3,13 +3,21 @@ using FilmProjem.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1. ADIM: Veritabanı Servisi
+// 1. ADIM: Veritabanı Servisi (PostgreSQL için UseNpgsql kullanıyoruz)
 builder.Services.AddDbContext<UygulamaDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))); // Burayı Npgsql yaptık!
 
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+// 2. ADIM: Veritabanını ve Tabloları Otomatik Oluşturma
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<UygulamaDbContext>();
+    context.Database.EnsureCreated(); // Veritabanı boşsa tabloları senin yerine kurar
+}
 
 if (!app.Environment.IsDevelopment())
 {
@@ -18,13 +26,11 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-// 2. ADIM: Statik dosyalar için bu satır yeterlidir
 app.UseStaticFiles(); 
 
 app.UseRouting();
 app.UseAuthorization();
 
-// 3. ADIM: Hatalı olan .MapStaticAssets() ve .WithStaticAssets() kısımlarını sildik
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

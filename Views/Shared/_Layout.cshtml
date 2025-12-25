@@ -27,7 +27,7 @@
 
         .navbar-brand {
             font-size: 1.5rem;
-            color: #c2185b !important; /* İstediğin o pembe/vişne tonu */
+            color: #c2185b !important; /* Vişne/Pembe tonu */
             font-weight: 800;
         }
 
@@ -46,8 +46,14 @@
         footer { 
             background: #121212; 
             padding: 25px 0; 
-            margin-top: 0;
+            margin-top: 50px;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-link {
+            color: #c2185b;
+            text-decoration: none;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -68,6 +74,9 @@
                                 <i class="bi bi-collection-play"></i> Filmlerimiz
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white-50" asp-controller="Home" asp-action="Privacy">Hakkımda</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -80,7 +89,10 @@
 
     <footer class="footer text-muted text-center">
         <div class="container">
-            <p class="mb-0 text-white-50 small">&copy; 2025 - <span class="text-white fw-bold">Yozgat Bozok Üniversitesi</span> - Film Arşivi</p>
+            <p class="mb-0 text-white-50 small">
+                &copy; 2025 - <span class="text-white fw-bold">Yozgat Bozok Üniversitesi</span> - 
+                <a asp-controller="Home" asp-action="Privacy" class="footer-link">Hakkımda</a>
+            </p>
         </div>
     </footer>
 

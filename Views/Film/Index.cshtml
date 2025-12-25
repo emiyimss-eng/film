@@ -1,29 +1,93 @@
 @model IEnumerable<FilmProjem.Models.Film>
 
-<div class="container mt-4">
-    <div class="d-flex justify-content-between align-items-center">
-        <h1>Film Arşivi</h1>
-        <a asp-action="Create" class="btn btn-primary">Yeni Film Ekle</a>
+<div class="container mt-5 py-4">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <div>
+            <h1 class="text-white fw-bold display-5 mb-0">Film Arşivi</h1>
+            <p class="text-secondary mt-2">Koleksiyonundaki özel filmler burada listelenir.</p>
+        </div>
+        <a asp-action="Create" class="btn btn-outline-light rounded-pill px-4 py-2 fw-bold hover-pink">
+            <i class="bi bi-plus-lg"></i> Yeni Film Ekle
+        </a>
     </div>
 
-    <hr />
-
-    <div class="row">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
         @foreach (var item in Model)
         {
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <img src="@item.AfisUrl" class="card-img-top" alt="Film Afişi" style="height: 300px; object-fit: cover;">
-                    <div class="card-body">
-                        <h5 class="card-title">@item.Ad</h5>
-                        <p class="card-text text-muted">@item.Tur | @item.Yil</p>
-                        <p class="card-text"><strong>Yönetmen:</strong> @item.Yonetmen</p>
+            <div class="col">
+                <div class="card h-100 bg-dark text-white border-0 film-card shadow-lg">
+                    <div class="position-relative overflow-hidden card-img-box">
+                        <img src="@item.AfisUrl" class="card-img-top film-poster-img" alt="@item.Ad">
+                        
+                        <div class="card-overlay-box d-flex align-items-center justify-content-center">
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm px-4 rounded-pill" 
+                               onclick="return confirm('Bu filmi arşivden silmek istediğine emin misin?')">
+                                <i class="bi bi-trash"></i> Sil
+                            </a>
+                        </div>
                     </div>
-                    <div class="card-footer bg-white border-top-0">
-                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger w-100" onclick="return confirm('Bu filmi silmek istediğinize emin misiniz?')">Filmi Sil</a>
+                    <div class="card-body px-3">
+                        <h5 class="card-title fw-bold text-truncate mb-2">@item.Ad</h5>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="badge rounded-pill bg-secondary bg-opacity-25 text-light px-3">@item.Tur</span>
+                            <span class="text-secondary small fw-bold">@item.Yil</span>
+                        </div>
+                        <p class="card-text small mb-0 opacity-75">
+                            <i class="bi bi-person-fill text-secondary"></i> @item.Yonetmen
+                        </p>
                     </div>
                 </div>
             </div>
         }
     </div>
 </div>
+
+<style>
+    /* Kartların Genel Tasarımı */
+    .film-card {
+        border-radius: 18px !important;
+        transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        background-color: #1a1a1a !important;
+    }
+
+    .film-card:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 15px 35px rgba(194, 24, 91, 0.4) !important;
+    }
+
+    /* Görsel Kutusu ve Hover Efekti */
+    .card-img-box {
+        height: 380px;
+        border-radius: 18px 18px 0 0;
+    }
+
+    .film-poster-img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+    }
+
+    .film-card:hover .film-poster-img {
+        transform: scale(1.1);
+    }
+
+    .card-overlay-box {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.7);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .film-card:hover .card-overlay-box {
+        opacity: 1;
+    }
+
+    /* Buton ve Badge Stil */
+    .hover-pink:hover {
+        background-color: #c2185b !important;
+        border-color: #c2185b !important;
+        color: white !important;
+    }
+</style>

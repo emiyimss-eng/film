@@ -1,8 +1,87 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Ana Sayfa";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="hero-wrapper">
+    <div class="hero-mask"></div>
+    
+    <div class="hero-inner text-center">
+        <h1 class="hero-main-title fw-bold">Film Arşivi Projesi</h1>
+        <p class="hero-tagline mb-5">
+            Kapsamlı film veritabanımızda gezinin, yeni dünyalar keşfedin<br> 
+            ve kendi özel listenizi oluşturun.
+        </p>
+        <div class="button-group">
+            <a asp-controller="Film" asp-action="Index" class="btn-main shadow-lg">
+                Filmlere Göz At!
+            </a>
+        </div>
+    </div>
 </div>
+
+<style>
+    /* Hero Bölümü Konfigürasyonu */
+    .hero-wrapper {
+        position: relative;
+        height: 88vh;
+        width: 100%;
+        background: url('https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: -16px;
+    }
+
+    /* Görseli Karartan Gradyan Katman */
+    .hero-mask {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: radial-gradient(circle, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.95) 100%);
+        z-index: 1;
+    }
+
+    /* Yazı Grubu Ayarları */
+    .hero-inner {
+        position: relative;
+        z-index: 2;
+        padding: 0 20px;
+    }
+
+    .hero-main-title {
+        font-size: clamp(2.5rem, 8vw, 5.5rem);
+        color: #ffffff;
+        text-shadow: 0 4px 25px rgba(0,0,0,1);
+        margin-bottom: 20px;
+        letter-spacing: -2px;
+    }
+
+    .hero-tagline {
+        font-size: 1.3rem;
+        color: rgba(255,255,255,0.8);
+        max-width: 800px;
+        margin: 0 auto;
+        font-weight: 300;
+    }
+
+    /* Görseldeki O Pembe/Vişne Buton Tasarımı */
+    .btn-main {
+        display: inline-block;
+        background-color: #c2185b; /* Vişne Rengi */
+        color: white !important;
+        padding: 18px 55px;
+        font-size: 1.3rem;
+        font-weight: 900;
+        text-decoration: none;
+        border-radius: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: none;
+    }
+
+    .btn-main:hover {
+        background-color: #ad1457;
+        transform: scale(1.1) translateY(-5px);
+        box-shadow: 0 20px 40px rgba(194, 24, 91, 0.6);
+    }
+</style>

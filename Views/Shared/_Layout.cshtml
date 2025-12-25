@@ -6,35 +6,67 @@
     <title>@ViewData["Title"] - FilmProjem</title>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
-    
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/FilmProjem.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     
     <style>
-        /* Ödevin daha profesyonel görünmesi için küçük bir dokunuş */
-        body { background-color: #f8f9fa; }
-        .navbar { box-shadow: 0 2px 4px rgba(0,0,0,.08); }
-        footer { background: white; padding: 20px 0; margin-top: 50px; }
+        /* Tüm Sitenin Karanlık Teması */
+        body { 
+            background-color: #0b0b0b !important; 
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Şeffaf ve Modern Menü Çubuğu */
+        .navbar { 
+            background: rgba(18, 18, 18, 0.98) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+            padding: 15px 0;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: #c2185b !important; /* İstediğin o pembe/vişne tonu */
+            font-weight: 800;
+        }
+
+        .nav-link {
+            color: #ffffff !important;
+            margin: 0 10px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #c2185b !important;
+        }
+
+        /* Sayfa Alt Bilgisi */
+        footer { 
+            background: #121212; 
+            padding: 25px 0; 
+            margin-top: 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
     </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom mb-3">
+        <nav class="navbar navbar-expand-sm navbar-dark sticky-top">
             <div class="container">
-                <a class="navbar-brand fw-bold text-primary" asp-controller="Home" asp-action="Index">🎬 FilmProjem</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                    <i class="bi bi-film"></i> FilmProjem
+                </a>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+                    <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Ana Sayfa</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">Ana Sayfa</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark fw-bold" asp-controller="Film" asp-action="Index">🍿 Filmlerimiz</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Gizlilik</a>
+                            <a class="nav-link fw-bold" asp-controller="Film" asp-action="Index" style="color: #c2185b !important;">
+                                <i class="bi bi-collection-play"></i> Filmlerimiz
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -42,22 +74,18 @@
         </nav>
     </header>
 
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    <main role="main">
+        @RenderBody()
+    </main>
 
-    <footer class="border-top footer text-muted text-center">
+    <footer class="footer text-muted text-center">
         <div class="container">
-            &copy; 2025 - <b>Yozgat Bozok Üniversitesi</b> - FilmProjem - <a asp-controller="Home" asp-action="Privacy">Gizlilik</a>
+            <p class="mb-0 text-white-50 small">&copy; 2025 - <span class="text-white fw-bold">Yozgat Bozok Üniversitesi</span> - Film Arşivi</p>
         </div>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -1,6 +1,95 @@
 ﻿@{
-    ViewData["Title"] = "Privacy Policy";
+    ViewData["Title"] = "Hakkımda";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="about-card shadow-lg p-5 border-0">
+                <div class="text-center mb-5">
+                    <div class="profile-avatar mb-4">
+                        <i class="bi bi-person-circle display-1 text-pink"></i>
+                    </div>
+                    <h1 class="fw-bold text-white mb-1">Recep Emirhan Bige</h1>
+                    <p class="text-pink fs-5 fw-light">Bilgisayar Mühendisliği Öğrencisi</p>
+                    <div class="divider mx-auto"></div>
+                </div>
+
+                <div class="about-details text-light">
+                    <h4 class="section-title mb-4"><i class="bi bi-rocket-takeoff me-2"></i>Proje Hedefi</h4>
+                    <p class="lead-text">
+                        Bu çalışma, <strong>Yozgat Bozok Üniversitesi</strong> bünyesinde modern web teknolojilerini kullanarak 
+                        dinamik bir film yönetim sistemi geliştirmek amacıyla hazırlanmıştır. 
+                    </p>
+                    
+                    <h4 class="section-title mt-5 mb-4"><i class="bi bi-stack me-2"></i>Teknik Yetkinlikler</h4>
+                    <div class="d-flex flex-wrap gap-3">
+                        <span class="tech-badge">ASP.NET Core 8.0</span>
+                        <span class="tech-badge">Entity Framework Core</span>
+                        <span class="tech-badge">PostgreSQL</span>
+                        <span class="tech-badge">Bootstrap 5</span>
+                        <span class="tech-badge">Render Deployment</span>
+                    </div>
+
+                    <div class="mt-5 pt-4 text-center border-top border-secondary opacity-75">
+                        <p class="mb-3">Daha fazla proje için GitHub profilimi ziyaret edebilirsiniz:</p>
+                        <a href="https://github.com/emiyimss-eng" target="_blank" class="btn btn-pink rounded-pill px-5 py-2 fw-bold shadow">
+                            <i class="bi bi-github me-2"></i> GitHub'da Takip Et
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Özel Tasarım Detayları */
+    .about-card {
+        background: rgba(26, 26, 26, 0.95);
+        border-radius: 30px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    }
+
+    .text-pink { color: #c2185b !important; }
+    .btn-pink { background-color: #c2185b; color: white; border: none; }
+    .btn-pink:hover { background-color: #ad1457; color: white; transform: translateY(-3px); }
+
+    .divider {
+        height: 4px;
+        width: 60px;
+        background: #c2185b;
+        border-radius: 2px;
+        margin-top: 15px;
+    }
+
+    .section-title {
+        color: #c2185b;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 1.1rem;
+    }
+
+    .tech-badge {
+        background: rgba(194, 24, 91, 0.1);
+        color: #e0e0e0;
+        border: 1px solid rgba(194, 24, 91, 0.3);
+        padding: 8px 16px;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        transition: 0.3s;
+    }
+
+    .tech-badge:hover {
+        background: #c2185b;
+        color: white;
+    }
+
+    .lead-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: rgba(255,255,255,0.8);
+    }
+</style>
